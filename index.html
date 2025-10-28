@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portofolio | Caca</title>
+  <meta name="description" content="Portofolio pribadi — proyek, keahlian, dan kontak." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>✨</text></svg>">
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: #0f172a;
+      --muted: #94a3b8;
+      --text: #e2e8f0;
+      --brand: #0ea5e9;
+      --brand-2:#22d3ee;
+      --ring: rgba(34,211,238,.35);
+      --shadow: 0 10px 30px rgba(2,8,23,.35);
+      --radius: 18px;
+    }
+    :root.light{
+      --bg: #f7fafc;
+      --card:#ffffff;
+      --muted:#475569;
+      --text:#0f172a;
+      --brand:#0284c7;
+      --brand-2:#06b6d4;
+      --ring: rgba(14,165,233,.25);
+      --shadow: 0 8px 24px rgba(15,23,42,.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+      background: var(--bg); color: var(--text);
+    }
+
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block; height:auto}
+    .container{width:min(1100px, 92%); margin-inline:auto}
+
+    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.8rem 1rem; border-radius: calc(var(--radius) - 6px); font-weight:600; text-decoration:none; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:white; box-shadow: var(--shadow); border:0; cursor:pointer}
+    .btn.ghost{background:transparent; outline:1px solid rgba(148,163,184,.25); color:var(--text)}
+    .btn:focus-visible{outline:3px solid var(--ring); outline-offset:3px}
+
+    /* NAV */
+    .nav{position:sticky; top:0; z-index:40; backdrop-filter: blur(8px); background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom:1px solid rgba(148,163,184,.15)}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.8rem 0}
+    .brand{display:flex; align-items:center; gap:.6rem; font-weight:800; font-size:1rem}
+    .brand .logo{inline-size:34px; block-size:34px; border-radius:10px; display:grid; place-items:center; background:radial-gradient(60% 60% at 30% 20%, var(--brand-2), transparent), linear-gradient(135deg, var(--brand), #3b82f6)}
+    .nav ul{display:flex; gap:1rem; list-style:none; margin:0; padding:0}
+    .nav a{opacity:.9; font-weight:600}
+    .theme-toggle{inline-size:42px; block-size:42px; border-radius:12px; border:1px solid rgba(148,163,184,.25); background:var(--card); display:grid; place-items:center; cursor:pointer}
+
+    /* ✅ Navbar responsif */
+    @media (max-width: 768px){
+      .nav-inner{flex-wrap:wrap; justify-content:center; text-align:center}
+      .nav ul{flex-wrap:wrap; justify-content:center}
+      .brand{justify-content:center; width:100%}
+    }
+
+    /* Hero */
+    .hero{padding: 72px 0 36px}
+    .hero-grid{display:grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items:center}
+    .hero h1{font-size: clamp(2rem, 4vw + .6rem, 3.4rem); line-height:1.05; margin:.2rem 0 1rem}
+    .hero p{color: var(--muted); font-size:1.06rem}
+    .avatar{border-radius: 22px; overflow:hidden; box-shadow: var(--shadow); border:1px solid rgba(148,163,184,.18)}
+
+    /* ✅ Hero responsif */
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns: 1fr; text-align:center}
+      .hero .row{justify-content:center}
+      .avatar{max-width: 320px; margin:0 auto}
+    }
+
+    /* Section */
+    section{padding: 56px 0}
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:1rem; margin-bottom: 22px; flex-wrap:wrap}
+    .section-head h2{font-size: clamp(1.4rem, 2vw + .4rem, 2rem); margin:0}
+    .grid{display:grid; gap: 18px}
+    .grid.cols-3{grid-template-columns: repeat(3, 1fr)}
+    .grid.cols-2{grid-template-columns: repeat(2, 1fr)}
+
+    /* ✅ Grid responsif */
+    @media (max-width: 900px){
+      .grid.cols-3{grid-template-columns: 1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .grid.cols-3, .grid.cols-2{grid-template-columns: 1fr}
+    }
+
+    /* Card */
+    .card{background:var(--card); border:1px solid rgba(148,163,184,.18); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow)}
+    .card h3{margin:8px 0 6px; font-size:1.05rem}
+    .muted{color:var(--muted)}
+    .tag{display:inline-flex; align-items:center; gap:.4rem; padding:.36rem .6rem; border-radius:999px; border:1px solid rgba(148,163,184,.25); font-size:.84rem}
+    .tags{display:flex; flex-wrap:wrap; gap:.5rem}
+
+    /* Timeline */
+    .timeline{position:relative; padding-left:22px}
+    .timeline:before{content:""; position:absolute; inset:0 auto 0 8px; width:2px; background:linear-gradient(var(--brand), transparent)}
+    .t-item{position:relative; margin-bottom:18px}
+    .t-item::marker{content:none}
+    .t-item .dot{position:absolute; left:-22px; top:.25rem; width:12px; height:12px; border-radius:50%; background: var(--brand); box-shadow:0 0 0 4px rgba(14,165,233,.2)}
+
+    footer{padding: 42px 0; border-top:1px solid rgba(148,163,184,.15)}
+    .footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem}
+
+    .row{display:flex; gap:.8rem; flex-wrap:wrap}
+    .center{text-align:center}
+    .mb-1{margin-bottom:.5rem}
+    .mb-2{margin-bottom:1rem}
+    .mb-3{margin-bottom:1.4rem}
+    .hidden{display:none}
+
+    /* Input style */
+    .input{width:100%; padding:.8rem 1rem; background:var(--bg); color:var(--text); border-radius:12px; border:1px solid rgba(148,163,184,.28)}
+    .input:focus{outline:3px solid var(--ring); outline-offset:2px}
+  </style>
+</head>
+<body>
+  <!-- ======================= NAV ======================= -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">
+        <span class="logo"></span>
+        <span>Kallista Cahya Fadantya</span>
+      </a>
+      <ul>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#skills">Keahlian</a></li>
+        <li><a href="#projects">Proyek</a></li>
+        <li><a href="#experience">Pengalaman</a></li>
+        <li><a href="#contact">Kontak</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle">🌗</button>
+    </div>
+  </nav>
+
+  <!-- ======================= HERO ======================= -->
+  <header id="home" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="tag mb-1">Selamat Datang !!</p>
+        <h1>Halo, saya <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">Caca</span> — seorang <strong>Siswi SMK Negeri 8 Malang</strong></h1>
+        <div class="row">
+          <a class="btn" href="#projects">Lihat Proyek</a>
+          <a class="btn ghost" href="KallistaCahyaFadantya_CV.pdf" download>Unduh CV</a>
+        </div>
+      </div>
+      <div class="avatar">
+        <img src="webcam-toy-photo41.jpg" alt="Foto profil" />
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================= MAIN ======================= -->
+  <main>
+    <!-- Tentang -->
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>Tentang Saya</h2>
+        </div>
+        <div class="card">
+          <p class="mb-2">Saya Kallista Cahya Fadantya, siswi RPL yang menyukai tampilan web sederhana, fungsional, dan estetis. Saya senang menciptakan desain yang nyaman dilihat dan mudah digunakan.</p>
+          <div class="tags">
+            <span class="tag">📍 Indonesia</span>
+            <span class="tag">🎓 RPL</span>
+            <span class="tag">🛠️ Desain</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Keahlian -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <h2>Keahlian & Alat</h2>
+          <a class="btn ghost" href="#contact">Ajak Kolaborasi</a>
+        </div>
+        <div class="grid cols-3">
+          <div class="card">
+            <h3>Frontend</h3>
+            <p class="muted mb-1">HTML • CSS • JS</p>
+            <div class="tags">
+              <span class="tag">Responsive</span>
+              <span class="tag">Bootstrap</span>
+              <span class="tag">JS</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Backend</h3>
+            <p class="muted mb-1">Node.js • MySQL</p>
+            <div class="tags">
+              <span class="tag">API</span>
+              <span class="tag">CRUD</span>
+              <span class="tag">MongoDB</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Tools</h3>
+            <p class="muted mb-1">VS Code • Command Line</p>
+            <div class="tags">
+              <span class="tag">Terminal</span>
+              <span class="tag">NPM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proyek -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <h2>Proyek Pilihan</h2>
+          <a class="btn ghost" href="https://github.com/cacaakallista-ctrl" target="_blank">GitHub Saya ↗</a>
+        </div>
+        <div class="grid cols-3">
+          <article class="card">
+            <img src="web-kripik.png" alt="Website Kripik Buah" style="border-radius:12px" />
+            <h3>Website Kripik Buah</h3>
+            <p class="muted">Menampilkan produk keripik buah sehat dan renyah.</p>
+            <div class="tags mb-2">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">Bootstrap</span>
+            </div>
+            <div class="row">
+              <a class="btn" href="https://cacaakallista-ctrl.github.io/web-kripik/" target="_blank">View</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="web-wekeend.png" alt="Website Weekend" style="border-radius:12px" />
+            <h3>Website Weekend</h3>
+            <p class="muted">Informasi kegiatan seru akhir pekan.</p>
+            <div class="tags mb-2">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+            </div>
+            <div class="row">
+              <a class="btn" href="https://cacaakallista-ctrl.github.io/web-weekend/" target="_blank">View</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="web-kwyboard.png" alt="Website Keyboard" style="border-radius:12px" />
+            <h3>Website Keyboard</h3>
+            <p class="muted">Promosi produk keyboard mekanik modern.</p>
+            <div class="tags mb-2">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+            </div>
+            <div class="row">
+              <a class="btn" href="https://cacaakallista-ctrl.github.io/web-keyboard/" target="_blank">View</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pengalaman -->
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <h2>Pengalaman & Pendidikan</h2>
+        </div>
+        <ol class="timeline">
+          <li class="t-item">
+            <span class="dot"></span>
+            <div class="card">
+              <h3>Rekayasa Perangkat Lunak — SMK Negeri 8 Malang</h3>
+              <p class="muted">2024 — Sekarang</p>
+              <p>Fokus: Pemrograman web & mobile, basis data</p>
+            </div>
+          </li>
+          <li class="t-item">
+            <span class="dot"></span>
+            <div class="card">
+              <h3>SMP Al-Munawwariyyah</h3>
+              <p class="muted">2022 — 2024</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Kontak</h2>
+          <p class="muted">Siap ngobrol tentang proyek atau kolaborasi!</p>
+        </div>
+        <div class="grid cols-2">
+          <form class="card" onsubmit="sendMessage(event)">
+            <label class="mb-1" for="name">Nama</label>
+            <input id="name" name="name" required class="input mb-2" placeholder="Nama lengkap" />
+            <label class="mb-1" for="email">Email</label>
+            <input id="email" name="email" type="email" required class="input mb-2" placeholder="email@.com" />
+            <label class="mb-1" for="message">Pesan</label>
+            <textarea id="message" name="message" rows="5" required class="input mb-2" placeholder="Tulis pesanmu..."></textarea>
+            <button class="btn" type="submit">Kirim Pesan</button>
+            <p id="formStatus" class="muted"></p>
+          </form>
+
+          <div class="card">
+            <h3>Info</h3>
+            <p class="muted">Balas paling cepat via email & WhatsApp.</p>
+            <div class="tags mb-2">
+              <a class="tag" href="mailto:email@cacaakallista.com">📧 email@cacaakallista.com</a> 
+              <a class="tag" href="https://wa.me/qr/FTMFDDOETP2NL1" target="_blank" rel="noreferrer">💬 WhatsApp</a> 
+              <a class="tag" href="https://www.instagram.com/fadantyaa?igsh=Y2Vrd20zZmVuanBz" target="_blank" rel="noreferrer">📷 Instagram</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer>
+    <div class="container footer-inner">
+      <p>© 2025  CacaAa</p>
+      <div class="row">
+        <a href="#home" class="tag">⬆️ Kembali ke atas</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ========== Dark/Light Mode ==========
+    const toggle = document.getElementById("themeToggle");
+    const root = document.documentElement;
+    toggle.addEventListener("click", () => {
+      root.classList.toggle("light");
+      toggle.textContent = root.classList.contains("light") ? "🌞" : "🌗";
+    });
+
+    // ========== Form handler ==========
+    function sendMessage(e){
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const msg = document.getElementById("message").value.trim();
+      const status = document.getElementById("formStatus");
+
+      if(name && email && msg){
+        status.textContent = "✅ Pesan terkirim! Terima kasih, " + name + "!";
+        e.target.reset();
+      } else {
+        status.textContent = "⚠️ Mohon isi semua kolom.";
+      }
+    }
+  </script>
+</body>
+</html>
